@@ -1,0 +1,18 @@
+# Generate a summary statistics table of mean, median, variance, standard deviation, and SEM of the tumor volume for each regimen
+# Use groupby and summary statistical methods to calculate the following properties of each drug regimen:
+avg_tumor = mouse_data.groupby("Drug_Regimen")["Tumor_Volume"].mean()
+med_tumor = mouse_data.groupby("Drug_Regimen")["Tumor_Volume"].median()
+var_tumor = mouse_data.groupby("Drug_Regimen")["Tumor_Volume"].var()
+std_tumor = mouse_data.groupby("Drug_Regimen")["Tumor_Volume"].std()
+sem_tumor = mouse_data.groupby("Drug_Regimen")["Tumor_Volume"].sem()
+# mean, median, variance, standard deviation, and SEM of the tumor volume.
+# Assemble the resulting series into a single summary DataFrame.
+summary_df = pd.DataFrame({
+    "Mean Volume": avg_tumor,
+    "Median Volume": med_tumor,
+    "Variance": var_tumor,
+    "Standard Deviation": std_tumor,
+    "SEM": sem_tumor
+    })
+
+summary_df
